@@ -41,7 +41,7 @@
 import axios from "axios"
 
 export default {
-name: 'Groupe',
+name: 'listPokemon',
 data() {
     return {
         listPokedex: {},
