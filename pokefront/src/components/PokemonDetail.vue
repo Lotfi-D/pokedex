@@ -1,12 +1,17 @@
 <template>
-    <div  class="container-fluid fontPokemon" style="max-width:80rem">
-         <img :src="return_Image(image)" class="card-img-top" style="width: 15rem;">
-
-{{description}}{{id}}
-
-        <div v-if="type2!=''" class="row justify-content-center">
+    <div class="container-fluid fontPokemon" style="max-width:80rem">
+        <div class="d-flex justify-content-center">
+            <div class=" mb-5" style="max-width: 50rem;">
+                <div class=" mb-5">
+                    <h5 class="font-weight-bold">{{nom}}</h5>
+                    <h6>(No.{{id}})</h6>
+                </div>
+                <img :src="return_Image(image)" class="rounded mx-auto d-block " alt="no pokemon's image"
+                    style="max-width: 30rem;">
+                <div class="card-body">
+                    <div v-if="type2!=''" class="row justify-content-center">
                         <p>
-                            <img :src="return_type_written(type2)" class="card-img-top"
+                            <img :src="return_type_written(type1)" class="card-img-top"
                                 alt=" no symbol of pokemon's type" style="width:3rem;">
                         </p>
                         <p class="ml-1">
@@ -32,27 +37,35 @@
                                 style="width:2rem;">
                         </p>
                     </div>
-
+                    <div style="max-width:80rem"> <TabBar /></div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 
 <script>
     import axios from "axios"
+    import TabBar from '@/components/TabBar.vue'
 
     export default {
+        components: {
+            TabBar
+        },
         name: 'PokemonDetail',
         data() {
             return {
                 id: this.$route.params.id,
                 pokeInfo: {},
-                description:"",
-                type1:"",
-                type2:"",
-                image:"",
-
+              description:"",
+                type1: "",
+                type2: "",
+                image: "",
+                nom: "",
             }
         },
+         
 
         beforeMount() {
             this.getPokemonInformation()
@@ -69,12 +82,14 @@
                     redirect: 'follow'
                 };
                 await axios.get("http://127.0.0.1:8000/api/v1/pokedex/" + this.id, requestOptions)
-                .then(response => { this.pokeInfo = response.data.data, 
-                this.description = this.pokeInfo.Description[0].description
-                this.type1=this.pokeInfo.Types[0].type1,
-                this.type2=this.pokeInfo.Types[0].type2,
-                this.image=this.pokeInfo.Images[0].Images
-                })
+                    .then(response => {
+                        this.pokeInfo = response.data.data,
+                        this.description = this.pokeInfo.Description[0].description,
+                        this.type1 = this.pokeInfo.Types[0].type1,
+                        this.type2 = this.pokeInfo.Types[0].type2,
+                        this.image = this.pokeInfo.Images[0].Images,
+                        this.nom = this.pokeInfo.Name[0].nom_pok
+                    })
                 console.log(this.type1)
                 //console.log(this.pokeInfo.data.data.Types[0].type1)
                 // console.log(this.pokemons.data[0].type1)
@@ -94,8 +109,10 @@
             return_type2_written(type2) {
                 return `/assets/types_ecriture/${type2}` + `.png`
             },
-
         },
-
     }
 </script>
+
+<style scoped>
+
+</style>

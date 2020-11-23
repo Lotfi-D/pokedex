@@ -1,16 +1,16 @@
 <template>
   <div>
-  <listPokemon />
+  <ListPokemon />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import listPokemon from '@/components/listPokemon.vue'
+import ListPokemon from '@/components/ListPokemon.vue'
 
 export default {
   components: {
-    listPokemon
+    ListPokemon
   }
 }
 </script>

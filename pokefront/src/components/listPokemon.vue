@@ -71,7 +71,7 @@
     import axios from "axios"
 
     export default {
-        name: 'listPokemon',
+        name: 'ListPokemon',
         data() {
             return {
                 color_cardBody: "white",
@@ -143,12 +143,6 @@
 </script>
 
 <style scoped>
-    .fontPokemon {
-        font-size: 30px;
-        -webkit-font-smoothing: none;
-        font-family: "pokemon-font", monospace;
-    }
-
     .Grass {
         background: rgb(0, 0, 0);
         background: linear-gradient(49deg, rgba(0, 0, 0, 1) 0%, rgba(32, 150, 32, 1) 40%, rgba(22, 255, 0, 1) 90%);
