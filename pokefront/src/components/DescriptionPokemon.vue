@@ -1,6 +1,6 @@
 <template>
-    <div class="container-fluid fontPokemon" style="max-width:80rem">
-        <div class="d-flex justify-content-center">
+    <div class="container-fluid " style="max-width:80rem">
+        <div class="d-flex justify-content-center ">
             {{description}}
         </div>
     </div>

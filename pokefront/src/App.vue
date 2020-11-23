@@ -8,7 +8,7 @@
 
 <style>
   .fontPokemon {
-    font-size: 30px;
+    /* font-size: 30px; */
     -webkit-font-smoothing: none;
     font-family: "pokemon-font", monospace;
   }
