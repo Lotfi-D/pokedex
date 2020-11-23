@@ -51,7 +51,7 @@ class Pokedex extends JsonResource
             ->get(),  
 
             'Evolutions'=> Evolutions::select('id_pok_base','id_pok_evol', 'lvl_evol_pok')
-            ->where('id', $this->id)
+            ->where('id_pok_base', $this->id)
             ->get(),
 
         ];
