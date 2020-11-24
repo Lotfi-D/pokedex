@@ -1,10 +1,10 @@
 <template>
-    <div class="container-fluid fontPokemon" style="max-width:40rem">
-        <div class="d-flex justify-content-center">
+    <div class="container-fluid fontPokemon" style="max-width:60rem">
+        <div class="d-flex justify-content-center ">
             <div class=" mb-5">
                 <div class="card-header mb-5">
-                    <h5 class="font-weight-bold">{{nom}}</h5>
-                    <h6>(No.{{id}})</h6>
+                    <h5 class="font-weight-bold d-flex justify-content-center">{{nom}}</h5>
+                    <h6 class="d-flex justify-content-center">(No.{{id}})</h6>
                 </div>
                 <img :src="return_Image(image)" class="rounded mx-auto d-block " alt="no pokemon's image"
                     style="max-width: 30rem;">
@@ -92,9 +92,6 @@
                         this.image = this.pokeInfo.Images[0].Images,
                         this.nom = this.pokeInfo.Name[0].nom_pok
                     })
-                console.log(this.type1)
-                //console.log(this.pokeInfo.data.data.Types[0].type1)
-                // console.log(this.pokemons.data[0].type1)
             },
             return_Image(image) {
                 return `/assets/${image}`
@@ -116,5 +113,11 @@
 </script>
 
 <style scoped>
+    .Fire {
+        background: rgb(255, 0, 0);
+        background: linear-gradient(214deg, rgba(255, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%);
+        color: white;
+    }
+
 
 </style>
