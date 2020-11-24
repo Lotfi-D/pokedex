@@ -15,7 +15,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="contact-tab" data-toggle="tab" href="#evolution" role="tab"
-                    aria-controls="contact">Evolutions</a>
+                    aria-controls="contact">Evolutions {{btnText}}</a>
             </li>
         </ul>
         <div class="tab-content mb-5" id="myTabContent">
@@ -40,6 +40,7 @@
     import EvolutionPokemon from '@/components/EvolutionPokemon.vue'
 
     export default {
+        props:['btnText'],
         components: {
             DescriptionPokemon,
             StatsPokemon,

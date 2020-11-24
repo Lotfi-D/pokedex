@@ -1,6 +1,6 @@
 <template>
-    <div class="mt-3" >
-            {{description}}
+    <div class="mt-3">
+        {{description}}
     </div>
 </template>
 
@@ -10,21 +10,21 @@
 
     export default {
         components: {
-            
+
         },
         name: 'DescriptionPokemon',
         data() {
             return {
                 id: this.$route.params.id,
                 pokeInfo: {},
-              description:"",
+                description: "",
                 type1: "", //On garde le type 1 et 2 et image pr le moment pour voir ce qu'on met ds tte la description
                 type2: "",
                 image: "",
                 nom: "",
             }
         },
-         
+
 
         beforeMount() {
             this.getPokemonDescription()
@@ -43,11 +43,11 @@
                 await axios.get("http://127.0.0.1:8000/api/v1/pokedex/" + this.id, requestOptions)
                     .then(response => {
                         this.pokeInfo = response.data.data,
-                        this.description = this.pokeInfo.Description[0].description,
-                        this.type1 = this.pokeInfo.Types[0].type1,
-                        this.type2 = this.pokeInfo.Types[0].type2,
-                        this.image = this.pokeInfo.Images[0].Images,
-                        this.nom = this.pokeInfo.Name[0].nom_pok
+                            this.description = this.pokeInfo.Description[0].description,
+                            this.type1 = this.pokeInfo.Types[0].type1,
+                            this.type2 = this.pokeInfo.Types[0].type2,
+                            this.image = this.pokeInfo.Images[0].Images,
+                            this.nom = this.pokeInfo.Name[0].nom_pok
                     })
             },
             return_Image(image) {

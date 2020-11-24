@@ -1,15 +1,16 @@
 <template>
     <div class="container fontPokemon" style="max-width:60rem">
-
-       <router-link v-bind:to="'/pokedex/' + idNext">
-        <a>
-            suivant {{idNext}}
-        </a>
-       </router-link>
-        <a v-bind:href="'/pokedex/' + idBefore">
-            Précédent {{idNext}}
-        </a>
-     
+        OHOHOHO
+        <router-link v-bind:to="'/pokedex/' + id">
+            <a v-on:click="nextPokemon()">
+                suivant
+            </a>
+        </router-link>
+        <router-link v-bind:to="'/pokedex/' + id">
+            <a v-on:click="previousPokemon()">
+                precedent
+            </a>
+        </router-link>
         <div class="d-flex justify-content-center ">
             <div class=" mb-5">
                 <div class="card-header mb-5">
@@ -47,8 +48,8 @@
                                 style="width:2rem;">
                         </p>
                     </div>
-                    <div> 
-                        <TabBar />
+                    <div>
+                        <TabBar v-bind:btn-text="text" />
                     </div>
                 </div>
             </div>
@@ -68,18 +69,16 @@
         name: 'PokemonDetail',
         data() {
             return {
-                id: Number (this.$route.params.id),
+                text: "Salut Gacem",
+                id: Number(this.$route.params.id),
                 pokeInfo: {},
-              description:"",
+                description: "",
                 type1: "",
                 type2: "",
                 image: "",
                 nom: "",
-                idNext:Number,
-                idBefore:Number
             }
         },
-         
 
         beforeMount() {
             this.getPokemonInformation()
@@ -98,15 +97,20 @@
                 await axios.get("http://127.0.0.1:8000/api/v1/pokedex/" + this.id, requestOptions)
                     .then(response => {
                         this.pokeInfo = response.data.data,
-                        this.description = this.pokeInfo.Description[0].description,
-                        this.type1 = this.pokeInfo.Types[0].type1,
-                        this.type2 = this.pokeInfo.Types[0].type2,
-                        this.image = this.pokeInfo.Images[0].Images,
-                        this.nom = this.pokeInfo.Name[0].nom_pok,
-                        this.idNext=this.pokeInfo.No + 1,
-                        this.idBefore=this.pokeInfo.No - 1
-                        console.log(this.idNext)
+                            this.description = this.pokeInfo.Description[0].description,
+                            this.type1 = this.pokeInfo.Types[0].type1,
+                            this.type2 = this.pokeInfo.Types[0].type2,
+                            this.image = this.pokeInfo.Images[0].Images,
+                            this.nom = this.pokeInfo.Name[0].nom_pok
                     })
+            },
+            nextPokemon() {
+                this.id++;
+                this.getPokemonInformation();
+            },
+            previousPokemon() {
+                this.id--;
+                this.getPokemonInformation();
             },
             return_Image(image) {
                 return `/assets/${image}`
@@ -133,6 +137,4 @@
         background: linear-gradient(214deg, rgba(255, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%);
         color: white;
     }
-
-
 </style>
