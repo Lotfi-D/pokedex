@@ -11,7 +11,7 @@
                 <div class="progress" style="max-width:10rem">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
                         :aria-valuenow="hp" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ width: hp + '%' }"
-                        v-bind:class="{infmoyenne:hp<50, supmoyenne:hp>50}">
+                        v-bind:class="{infmoyenne:hp<68, supmoyenne:hp>68}">
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                 <div class="progress" style="max-width:20rem">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
                         :aria-valuenow="attack" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ width: attack + '%' }"
-                        v-bind:class="{infmoyenne:attack<50, supmoyenne:attack>50}">
+                        v-bind:class="{infmoyenne:attack<75 , supmoyenne:attack>75 }">
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                 <div class="progress" style="max-width:20rem">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
                         :aria-valuenow="defense" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ width: defense + '%' }"
-                        v-bind:class="{infmoyenne:defense<50, supmoyenne:defense>50}">
+                        v-bind:class="{infmoyenne:defense<70, supmoyenne:defense>70}">
                     </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                 <div class="progress" style="max-width:20rem">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
                         :aria-valuenow="sp_attack" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ width: sp_attack + '%' }"
-                        v-bind:class="{infmoyenne:sp_attack<50, supmoyenne:sp_attack>50}">
+                        v-bind:class="{infmoyenne:sp_attack<69, supmoyenne:sp_attack>69}">
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                 <div class="progress" style="max-width:20rem">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
                         :aria-valuenow="sp_defense" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ width: sp_defense + '%' }"
-                        v-bind:class="{infmoyenne:sp_defense<50, supmoyenne:sp_defense>50}">
+                        v-bind:class="{infmoyenne:sp_defense<69, supmoyenne:sp_defense>69}">
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                 <div class="progress" style="max-width:20rem">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
                         :aria-valuenow="speed" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ width: speed + '%' }"
-                        v-bind:class="{infmoyenne:speed<50, supmoyenne:speed>50}">
+                        v-bind:class="{infmoyenne:speed<66, supmoyenne:speed>66}">
                     </div>
                 </div>
             </div>
@@ -146,9 +146,6 @@
                             this.sp_defense = this.pokeInfo.Stats[0].sp_defense,
                             this.speed = this.pokeInfo.Stats[0].speed
                     })
-                console.log(this.hp)
-                //console.log(this.pokeInfo.data.data.Types[0].type1)
-                // console.log(this.pokemons.data[0].type1)
             },
         },
     }

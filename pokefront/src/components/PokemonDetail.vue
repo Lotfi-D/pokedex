@@ -1,12 +1,22 @@
 <template>
-    <div class="container-fluid fontPokemon" style="max-width:60rem">
+    <div class="container fontPokemon" style="max-width:60rem">
+
+       <router-link v-bind:to="'/pokedex/' + idNext">
+        <a>
+            suivant {{idNext}}
+        </a>
+       </router-link>
+        <a v-bind:href="'/pokedex/' + idBefore">
+            Précédent {{idNext}}
+        </a>
+     
         <div class="d-flex justify-content-center ">
             <div class=" mb-5">
                 <div class="card-header mb-5">
                     <h5 class="font-weight-bold d-flex justify-content-center">{{nom}}</h5>
                     <h6 class="d-flex justify-content-center">(No.{{id}})</h6>
                 </div>
-                <img :src="return_Image(image)" class="rounded mx-auto d-block " alt="no pokemon's image"
+                <img :src="return_Image(image)" class="rounded mx-auto d-block container-fluid" alt="no pokemon's image"
                     style="max-width: 30rem;">
                 <div class="card-body">
                     <div v-if="type2!=''" class="row justify-content-center">
@@ -58,13 +68,15 @@
         name: 'PokemonDetail',
         data() {
             return {
-                id: this.$route.params.id,
+                id: Number (this.$route.params.id),
                 pokeInfo: {},
               description:"",
                 type1: "",
                 type2: "",
                 image: "",
                 nom: "",
+                idNext:Number,
+                idBefore:Number
             }
         },
          
@@ -90,7 +102,10 @@
                         this.type1 = this.pokeInfo.Types[0].type1,
                         this.type2 = this.pokeInfo.Types[0].type2,
                         this.image = this.pokeInfo.Images[0].Images,
-                        this.nom = this.pokeInfo.Name[0].nom_pok
+                        this.nom = this.pokeInfo.Name[0].nom_pok,
+                        this.idNext=this.pokeInfo.No + 1,
+                        this.idBefore=this.pokeInfo.No - 1
+                        console.log(this.idNext)
                     })
             },
             return_Image(image) {

@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-3">
+    <div class="mt-3" >
             {{description}}
     </div>
 </template>
@@ -49,9 +49,6 @@
                         this.image = this.pokeInfo.Images[0].Images,
                         this.nom = this.pokeInfo.Name[0].nom_pok
                     })
-                console.log(this.type1)
-                //console.log(this.pokeInfo.data.data.Types[0].type1)
-                // console.log(this.pokemons.data[0].type1)
             },
             return_Image(image) {
                 return `/assets/${image}`
