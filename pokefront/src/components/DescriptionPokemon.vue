@@ -1,8 +1,6 @@
 <template>
-    <div class="container-fluid " style="max-width:80rem">
-        <div class="d-flex justify-content-center ">
+    <div class="mt-3">
             {{description}}
-        </div>
     </div>
 </template>
 
@@ -20,7 +18,7 @@
                 id: this.$route.params.id,
                 pokeInfo: {},
               description:"",
-                type1: "",
+                type1: "", //On garde le type 1 et 2 et image pr le moment pour voir ce qu'on met ds tte la description
                 type2: "",
                 image: "",
                 nom: "",

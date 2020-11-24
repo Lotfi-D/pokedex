@@ -6,14 +6,14 @@
                 Pokedex's color
             </button>
             <div class="dropdown-menu ">
-                <a v-on:click="white" type="button" class="bgcardwhite color-box border ml-2"></a>
-                <a v-on:click="black" type="button" class="bgcardblack color-box border ml-2"></a>
-                <a v-on:click="blue" type="button" class="bgcardblue color-box ml-2"></a>
-                <a v-on:click="grey" type="button" class="bgcardgrey color-box border ml-2"></a>
-                <a v-on:click="purple" type="button" class="bgcardpurple color-box ml-2"></a>
-                <a v-on:click="redpurple" type="button" class="bgcardredpurple color-box ml-2"></a>
-                <a v-on:click="red" type="button" class="bgcardred color-box ml-2"></a>
-                <a v-on:click="lightBlue" type="button" class="bgcardLightBlue color-box ml-2"></a>
+                <a v-on:mouseover="white" type="button" class="bgcardwhite color-box border ml-2"></a>
+                <a v-on:mouseover="black" type="button" class="bgcardblack color-box border ml-2"></a>
+                <a v-on:mouseover="blue" type="button" class="bgcardblue color-box ml-2"></a>
+                <a v-on:mouseover="grey" type="button" class="bgcardgrey color-box border ml-2"></a>
+                <a v-on:mouseover="purple" type="button" class="bgcardpurple color-box ml-2"></a>
+                <a v-on:mouseover="redpurple" type="button" class="bgcardredpurple color-box ml-2"></a>
+                <a v-on:mouseover="red" type="button" class="bgcardred color-box ml-2"></a>
+                <a v-on:mouseover="lightBlue" type="button" class="bgcardLightBlue color-box ml-2"></a>
             </div>
         </div>
         <div class="row justify-content-center">

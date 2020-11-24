@@ -1,8 +1,8 @@
 <template>
-    <div class="container-fluid fontPokemon" style="max-width:80rem">
+    <div class="container-fluid fontPokemon" style="max-width:40rem">
         <div class="d-flex justify-content-center">
-            <div class=" mb-5" style="max-width: 50rem;">
-                <div class=" mb-5">
+            <div class=" mb-5">
+                <div class="card-header mb-5">
                     <h5 class="font-weight-bold">{{nom}}</h5>
                     <h6>(No.{{id}})</h6>
                 </div>
@@ -37,7 +37,9 @@
                                 style="width:2rem;">
                         </p>
                     </div>
-                    <div style="max-width:80rem"> <TabBar /></div>
+                    <div> 
+                        <TabBar />
+                    </div>
                 </div>
             </div>
         </div>
