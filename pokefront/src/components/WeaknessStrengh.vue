@@ -1,7 +1,7 @@
 <template>
-    <div class="container-fluid">
+    <div class="">
         <div class="card border-0">
-            <h5 class="mt-3 card-header border-0 bg-white" id="weaknesses">Weaknesses : </h5>
+            <h5 class="mt-3 card-header border-0 bg-white" id="weaknesses">Weaknesses: </h5>
             <div class="mt-1 ml-1 card-body row">
                 <div class="mr-2" v-if="bug==2">
                     <img :src="return_type_written('bug')" class="sizeItem" alt="no type's symbol">
@@ -59,10 +59,9 @@
                 </div>
             </div>
         </div>
-
         <div class="card border-0">
-            <h5 class="mt-3 card-header border-0 bg-white" id="strenghs">Efficience & Resistance : </h5>
-            <div class="mt-1 ml-1 card-body row">
+            <h5 class="card-header border-0 bg-white" id="strenghs">Efficience & Resistance:</h5>
+            <div class="ml-1 card-body row">
                 <div class="mr-2" v-if="bug<1">
                     <img :src="return_type_written('bug')" class="sizeItem" alt="no type's symbol">
                 </div>
@@ -119,18 +118,18 @@
                 </div>
             </div>
         </div>
-
+        <InfoLogoType style="min-width:20rem; max-width:30rem" />
     </div>
 </template>
 
 
 <script>
     import axios from "axios"
-
+    import InfoLogoType from '@/components/InfoLogoType.vue'
     export default {
         name: 'StatsPokemon',
         components: {
-
+            InfoLogoType
         },
         props: {
             id: Number
@@ -164,9 +163,6 @@
         },
 
         methods: {
-            test(){
-                alert(<DescriptionPokemon />)
-            },
             async getWeaknesses() {
                 var myHeaders = new Headers();
                 myHeaders.append("Authorization", "Bearer ");
@@ -198,7 +194,7 @@
                         this.rock = this.weaknesses.rock
                         this.steel = this.weaknesses.steel
                         this.water = this.weaknesses.water
-                        console.log(this.pokeInfo.Weaknesses)
+                        console.log(this.pokeInfo.Weaknesses[0])
 
                     })
             },

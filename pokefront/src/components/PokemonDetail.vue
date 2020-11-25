@@ -17,6 +17,11 @@
                 <div class="card-header mb-5">
                     <h5 class="font-weight-bold d-flex justify-content-center">{{nom}}</h5>
                     <h6 class="d-flex justify-content-center">(No.{{id}})</h6>
+                     <button class="btn btn-primary btn-sm" @click.prevent="pokeCries(id)">
+                     <span class="fa fa-play-circle-o"></span>
+                     Test ds la fonction
+                     </button>
+                       
                 </div>
                 <img :src="return_Image(image)" class="rounded mx-auto d-block container-fluid" alt="no pokemon's image"
                     style="max-width: 30rem;">
@@ -50,7 +55,7 @@
                         </p>
                     </div>
                     <div>
-                        <TabBar :id="id" :Reload="Reload" /> 
+                        <TabBar :id="id" :Reload="Reload" style="min-width:20rem; max-width:30rem" /> 
                     </div>
                 </div>
             </div>
@@ -82,8 +87,9 @@
         },
 
         beforeMount() {
-            this.getPokemonInformation()
+            this.getPokemonInformation();
         },
+
 
         methods: {
             async getPokemonInformation() {
@@ -120,17 +126,21 @@
                 return `/assets/${image}`
             },
             return_type(type1) {
-                return `/assets/types/${type1}` + `.png`
+                return `/assets/types/${type1}.png`
             },
             return_type2(type2) {
-                return `/assets/types/${type2}` + `.png`
+                return `/assets/types/${type2}.png`
             },
             return_type_written(type1) {
-                return `/assets/types_ecriture/${type1}` + `.png`
+                return `/assets/types_ecriture/${type1}.png`
             },
             return_type2_written(type2) {
-                return `/assets/types_ecriture/${type2}` + `.png`
+                return `/assets/types_ecriture/${type2}.png`
             },
+            pokeCries (id) {
+                var audio = new Audio(`/assets/pokemon-cries/cries/${id}.ogg`);
+                audio.play();
+            }
         },
     }
 </script>
