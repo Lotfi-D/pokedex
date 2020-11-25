@@ -5,6 +5,7 @@
             <a v-on:click="nextPokemon()">
                 suivant
             </a>
+            {{Reload}}
         </router-link>
         <router-link v-bind:to="'/pokedex/' + id">
             <a v-on:click="previousPokemon()">
@@ -49,7 +50,7 @@
                         </p>
                     </div>
                     <div>
-                        <TabBar v-bind:btn-text="text" />
+                        <TabBar :id="id" :Reload="Reload" /> 
                     </div>
                 </div>
             </div>
@@ -69,7 +70,6 @@
         name: 'PokemonDetail',
         data() {
             return {
-                text: "Salut Gacem",
                 id: Number(this.$route.params.id),
                 pokeInfo: {},
                 description: "",
@@ -77,6 +77,7 @@
                 type2: "",
                 image: "",
                 nom: "",
+                Reload: false
             }
         },
 
@@ -102,15 +103,18 @@
                             this.type2 = this.pokeInfo.Types[0].type2,
                             this.image = this.pokeInfo.Images[0].Images,
                             this.nom = this.pokeInfo.Name[0].nom_pok
+                            return this.Reload = false
                     })
             },
             nextPokemon() {
                 this.id++;
                 this.getPokemonInformation();
+                return this.Reload = true;
             },
             previousPokemon() {
                 this.id--;
                 this.getPokemonInformation();
+                return this.Reload = true;
             },
             return_Image(image) {
                 return `/assets/${image}`

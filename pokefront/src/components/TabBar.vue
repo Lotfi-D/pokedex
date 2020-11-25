@@ -15,20 +15,21 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="contact-tab" data-toggle="tab" href="#evolution" role="tab"
-                    aria-controls="contact">Evolutions {{btnText}}</a>
+                    aria-controls="contact">Evolutions </a>
             </li>
         </ul>
         <div class="tab-content mb-5" id="myTabContent">
             <div class="tab-pane fade show active text-center" id="description" role="tabpanel" aria-labelledby="home-tab">
-                <DescriptionPokemon />
+                <DescriptionPokemon :id="id" />
             </div>
             <div class="tab-pane fade text-center" id="stats" role="tabpanel" aria-labelledby="profile-tab">
-                <StatsPokemon />
+                <StatsPokemon :id="id" />
             </div>
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Je n'ai plus d'idée
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <WeaknessStrengh :id="id" />
             </div>
             <div class="tab-pane fade" id="evolution" role="tabpanel" aria-labelledby="contact-tab">
-                <EvolutionPokemon />
+                <EvolutionPokemon :id="id" :Reload="Reload" />{{Reload}}
             </div>
         </div>
     </div>
@@ -38,15 +39,21 @@
     import DescriptionPokemon from '@/components/DescriptionPokemon.vue'
     import StatsPokemon from '@/components/StatsPokemon.vue'
     import EvolutionPokemon from '@/components/EvolutionPokemon.vue'
+    import WeaknessStrengh from '@/components/WeaknessStrengh.vue'
 
     export default {
-        props:['btnText'],
+        name: 'TabBar',
         components: {
             DescriptionPokemon,
             StatsPokemon,
-            EvolutionPokemon
+            EvolutionPokemon,
+            WeaknessStrengh
         },
-        name: 'TabBar',
+        props:{
+            id:Number,
+            Reload:Boolean//VARIABLE PR TEST
+        },
+        
         data() {
             return {
 

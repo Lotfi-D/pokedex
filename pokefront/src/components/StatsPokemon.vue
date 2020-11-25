@@ -104,13 +104,15 @@
     import axios from "axios"
 
     export default {
+        name: 'StatsPokemon',
         components: {
 
         },
-        name: 'StatsPokemon',
+        props:{
+            id:Number
+        },
         data() {
             return {
-                id: this.$route.params.id,
                 pokeInfo: {},
                 hp: "",
                 attack: "",
@@ -120,8 +122,6 @@
                 speed: ""
             }
         },
-
-
         beforeMount() {
             this.getPokemonStats()
         },

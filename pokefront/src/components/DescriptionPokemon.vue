@@ -9,13 +9,15 @@
     import axios from "axios"
 
     export default {
+        name: 'DescriptionPokemon',
         components: {
 
         },
-        name: 'DescriptionPokemon',
+        props:{
+            id:Number
+        },
         data() {
             return {
-                id: this.$route.params.id,
                 pokeInfo: {},
                 description: "",
                 type1: "", //On garde le type 1 et 2 et image pr le moment pour voir ce qu'on met ds tte la description
