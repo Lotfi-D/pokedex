@@ -14,6 +14,7 @@
                 <a v-on:mouseover="redpurple" type="button" class="bgcardredpurple color-box ml-2"></a>
                 <a v-on:mouseover="red" type="button" class="bgcardred color-box ml-2"></a>
                 <a v-on:mouseover="lightBlue" type="button" class="bgcardLightBlue color-box ml-2"></a>
+                <a v-on:mouseover="pokeballcolor" type="button" class="bgcardpokeball color-box ml-2"></a>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -29,7 +30,7 @@
                 </router-link>
                 <div class="card-body " v-bind:class="{bgcardblack: color_cardBody=='black', bgcardgrey: color_cardBody=='grey', bgcardblue: color_cardBody=='blue',
                 bgcardwhite: color_cardBody=='white', bgcardpurple: color_cardBody=='purple', bgcardredpurple: color_cardBody=='redpurple', bgcardred:color_cardBody=='red',
-                bgcardLightBlue:color_cardBody=='lightBlue'}">
+                bgcardLightBlue:color_cardBody=='lightBlue', bgcardpokeball:color_cardBody=='colorpokeball' }">
                     <h5 class="font-weight-bold"> {{pokemon.nom_pok}}</h5>
                     <h6>(No.{{pokemon.id}})</h6>
                     <div v-if="pokemon.type2!=''" class="row justify-content-center">
@@ -94,7 +95,10 @@
                     redirect: 'follow'
                 };
                 await axios.get("http://127.0.0.1:8000/api/v1/pokedex/", requestOptions)
-                .then(response => { this.pokemons = response})
+                    .then(response => {
+                        this.pokemons = response
+                    })
+                    .catch((error) => console.log(error));
             },
             return_Link(pokemon) {
                 return `/assets/${pokemon.image}`
@@ -135,6 +139,9 @@
             lightBlue() {
                 return this.color_cardBody = "lightBlue"
             },
+            pokeballcolor(){
+                return this.color_cardBody ="colorpokeball"
+            }
         },
 
     }
@@ -274,6 +281,15 @@
         background: rgb(0, 0, 0);
         background: linear-gradient(180deg, rgba(0, 0, 0, 1) 11%, rgba(255, 0, 0, 1) 69%);
         color: white
+    }
+
+    .bgcardpokeball {
+        background: rgb(250, 0, 0);
+        background: linear-gradient(180deg, rgba(250, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(255, 255, 255, 1) 100%);
+        color: white;
+        border:solid;
+        border-color:black ;
+     
     }
 
     .color-box {

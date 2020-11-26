@@ -17,11 +17,10 @@
                 <div class="card-header mb-5">
                     <h5 class="font-weight-bold d-flex justify-content-center">{{nom}}</h5>
                     <h6 class="d-flex justify-content-center">(No.{{id}})</h6>
-                     <button class="btn btn-primary btn-sm" @click.prevent="pokeCries(id)">
-                     <span class="fa fa-play-circle-o"></span>
-                     Test ds la fonction
-                     </button>
-                       
+                    <button class="btn btn-primary btn-sm" @click.prevent="pokeCries(id)">
+                        <span class="fa fa-play-circle-o"></span>
+                        Test ds la fonction
+                    </button>
                 </div>
                 <img :src="return_Image(image)" class="rounded mx-auto d-block container-fluid" alt="no pokemon's image"
                     style="max-width: 30rem;">
@@ -55,7 +54,7 @@
                         </p>
                     </div>
                     <div>
-                        <TabBar :id="id" :Reload="Reload" style="min-width:20rem; max-width:30rem" /> 
+                        <TabBar :id="id" :Reload="Reload" style="min-width:20rem; max-width:30rem" />
                     </div>
                 </div>
             </div>
@@ -89,8 +88,6 @@
         beforeMount() {
             this.getPokemonInformation();
         },
-
-
         methods: {
             async getPokemonInformation() {
                 var myHeaders = new Headers();
@@ -109,8 +106,9 @@
                             this.type2 = this.pokeInfo.Types[0].type2,
                             this.image = this.pokeInfo.Images[0].Images,
                             this.nom = this.pokeInfo.Name[0].nom_pok
-                            return this.Reload = false
+                        return this.Reload = false
                     })
+                    .catch((error) => console.log(error));
             },
             nextPokemon() {
                 this.id++;
@@ -137,7 +135,7 @@
             return_type2_written(type2) {
                 return `/assets/types_ecriture/${type2}.png`
             },
-            pokeCries (id) {
+            pokeCries(id) {
                 var audio = new Audio(`/assets/pokemon-cries/cries/${id}.ogg`);
                 audio.play();
             }
@@ -151,4 +149,5 @@
         background: linear-gradient(214deg, rgba(255, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%);
         color: white;
     }
+
 </style>

@@ -12,4 +12,6 @@
     -webkit-font-smoothing: none;
     font-family: "pokemon-font", monospace;
   }
+  
+
 </style>

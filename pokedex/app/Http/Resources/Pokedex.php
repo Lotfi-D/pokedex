@@ -9,6 +9,7 @@ use App\Stats;
 use App\Weaknesses;
 use App\Evolutions;
 use App\Images;
+use App\Information;
 
 class Pokedex extends JsonResource
 {
@@ -53,6 +54,10 @@ class Pokedex extends JsonResource
             'Evolutions'=> Evolutions::select('id_pok_base','id_pok_evol', 'lvl_evol_pok')
             ->where('id_pok_base', $this->id)
             ->get(),
+
+            'Information'=> Information::select('height', 'weight')
+                            ->where('id', $this->id)
+                            ->get(),
 
         ];
 
