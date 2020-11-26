@@ -1,18 +1,33 @@
 <template>
     <div>
-        <div class="mt-3" v-if="idEvolution!=null">
-            {{id}}
-
-            {{Reload}}{{Reload}}{{Reload}}
-            <img :src="return_ImagePokeBase(ImagePokemonBase)" class="rounded mx-auto d-block " alt="no pokemon's image"
-                style="max-width: 5rem;">
-            <img :src="return_Image(ImageEvolution)" class="rounded mx-auto d-block " alt="no pokemon's image"
-                style="max-width: 5rem;">
+        <div v-if="idEvolution!=null && otherEvolution == false" class="mt-3 row justify-content-center text-center">
+            <div class="card border-0">
+                <img :src="return_ImagePokeBase(ImagePokemonBase)" alt="no pokemon's image" style="max-width: 5rem;">
+                {{name}}
+            </div>
+            <span class="ml-5 mr-5" style='font-size:3rem;'>&#8594;</span>
+            <div class="card border-0">
+                <img :src="return_ImageEvolution(ImageEvolution)" alt="no pokemon's image" style="max-width: 5rem;">
+                {{nomEvolution}}
+            </div>
+        </div>
+        <div v-else-if="idEvolution!=null && otherEvolution == true " class="mt-3 row justify-content-center text-center">
+            <div v-for="evolution in evolutions" :key="evolution.id_pok_evol" class="row mt-3">
+                <div class="card border-0">
+                    <img :src="return_ImagePokeBase(ImagePokemonBase)" alt="no pokemon's image"
+                        style="max-width: 5rem;">
+                    {{name}}
+                </div>
+                <span class="ml-5 mr-5" style='font-size:3rem;'>&#8594;</span>
+                <div class="card border-0">
+                    {{evolution.id_pok_evol}}
+                    <img :src="returnImgageOtherEvolutions(evolution.id_pok_evol)" alt="no pokemon's image"
+                        style="max-width: 5rem;">
+                </div>
+            </div>
         </div>
         <div v-else class="text-center mt-3">
             Ce pokémon n'a pas d'évolution selon le pokedex de Kanto
-            <button v-on:click="reloadEvolution()">Charger</button>
-            {{Reload}}{{Reload}}{{Reload}}
         </div>
     </div>
 </template>
@@ -26,20 +41,21 @@
         components: {
 
         },
-         props:{
-            id:Number,
-            Reload:Boolean //VARIABLE PR TEEEST
+        props: {
+            id: Number,
+            name: String
         },
         data() {
             return {
-                //id: this.$route.params.id,
                 pokeInfo: {},
                 idEvolution: "",
                 ImagePokemonBase: "",
                 infoEvolution: "",
                 ImageEvolution: "",
                 nomEvolution: "",
-                No:""
+                No: "",
+                evolutions: "",
+                otherEvolution: false
             }
         },
         beforeMount() {
@@ -47,12 +63,6 @@
 
         },
         methods: {
-            //TEEEEST
-            reloadEvolution(){
-                if(this.Reload !=true) {
-                    this.getPokemonIdEvolution();
-                }
-            },
             //Récupère le id de l'écolution du pokemon
             async getPokemonIdEvolution() {
                 var myHeaders = new Headers();
@@ -68,27 +78,40 @@
                         this.pokeInfo = response.data.data;
                         this.ImagePokemonBase = this.pokeInfo.Images[0].Images;
                         if (this.pokeInfo.Evolutions != "") {
+                            this.evolutions = this.pokeInfo.Evolutions
                             this.idEvolution = this.pokeInfo.Evolutions[0].id_pok_evol
-                        } else {
+                                if(this.pokeInfo.Evolutions.length >1)
+                                {
+                                    console.log("bjr")
+                                    this.otherEvolution = true
+                                }
+                        } 
+                        else {
                             this.idEvolution = null
                         }
                     })
-                    if (this.idEvolution != null) {
+                if (this.idEvolution != null) {
                     await axios.get("http://127.0.0.1:8000/api/v1/pokedex/" + this.idEvolution, requestOptions)
                         .then(response => {
                             this.infoEvolution = response.data.data,
                             this.nomEvolution = this.infoEvolution.Name[0].nom_pok,
                             this.ImageEvolution = this.infoEvolution.Images[0].Images
-                            console.log(this.ImageEvolution)
                         })
                 }
+
             },
             return_ImagePokeBase(ImagePokemonBase) {
                 return `/assets/${ImagePokemonBase}`
             },
-            return_Image(ImageEvolution) {
+            return_ImageEvolution(ImageEvolution) {
                 return `/assets/${ImageEvolution}`
+            },
+            returnImgageOtherEvolutions(id_pok_evol) {
+                return `/assets/pokemon_image/${id_pok_evol}.png`
             },
         },
     }
 </script>
+<style>
+
+</style>

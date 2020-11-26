@@ -1,67 +1,30 @@
 <template>
     <div class="container fontPokemon" style="max-width:60rem">
-        OHOHOHO
         <router-link v-bind:to="'/pokedex/' + id">
             <a v-on:click="nextPokemon()">
                 suivant
             </a>
-            {{Reload}}
         </router-link>
         <router-link v-bind:to="'/pokedex/' + id">
             <a v-on:click="previousPokemon()">
-                precedent
+                precedent {{activateFunctions}}
             </a>
         </router-link>
         <div class="d-flex justify-content-center ">
             <div class=" mb-5">
                 <div class="card-header mb-5">
-                    <h5 class="font-weight-bold d-flex justify-content-center">{{nom}}</h5>
+                    <h5 class="font-weight-bold d-flex justify-content-center">{{name}}</h5>
                     <h6 class="d-flex justify-content-center">(No.{{id}})</h6>
-                    <button class="btn btn-primary btn-sm" @click.prevent="pokeCries(id)">
-                        <span class="fa fa-play-circle-o"></span>
-                        Test ds la fonction
-                    </button>
                 </div>
                 <img :src="return_Image(image)" class="rounded mx-auto d-block container-fluid" alt="no pokemon's image"
                     style="max-width: 30rem;">
-                <div class="card-body">
-                    <div v-if="type2!=''" class="row justify-content-center">
-                        <p>
-                            <img :src="return_type_written(type1)" class="card-img-top"
-                                alt=" no symbol of pokemon's type" style="width:3rem;">
-                        </p>
-                        <p class="ml-1">
-                            <img :src="return_type(type1)" class="card-img-top" alt=" no symbol of pokemon's type"
-                                style="width:2rem;">/
-                        </p>
-                        <p class="ml-1">
-                            <img :src="return_type2_written(type2)" class="card-img-top"
-                                alt=" no symbol of pokemon's type" style="width:3rem;">
-                        </p>
-                        <p class="ml-1">
-                            <img :src="return_type2(type2)" class="card-img-top" alt=" no symbol of pokemon's type"
-                                style="width:2rem;">
-                        </p>
+                    <div class=mt-5>
+                        <TabBar :id="id" :name="name" style="min-width:20rem; max-width:30rem" />
                     </div>
-                    <div v-else class="row justify-content-center">
-                        <p>
-                            <img :src="return_type_written(type1)" class="card-img-top"
-                                alt=" no symbol of pokemon's type" style="width:3rem;">
-                        </p>
-                        <p class="ml-1">
-                            <img :src="return_type(type1)" class="card-img-top" alt=" no symbol of pokemon's type"
-                                style="width:2rem;">
-                        </p>
-                    </div>
-                    <div>
-                        <TabBar :id="id" :Reload="Reload" style="min-width:20rem; max-width:30rem" />
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </template>
-
 
 <script>
     import axios from "axios"
@@ -80,11 +43,10 @@
                 type1: "",
                 type2: "",
                 image: "",
-                nom: "",
-                Reload: false
+                name: "",
+                activateFunctions: false
             }
         },
-
         beforeMount() {
             this.getPokemonInformation();
         },
@@ -105,20 +67,19 @@
                             this.type1 = this.pokeInfo.Types[0].type1,
                             this.type2 = this.pokeInfo.Types[0].type2,
                             this.image = this.pokeInfo.Images[0].Images,
-                            this.nom = this.pokeInfo.Name[0].nom_pok
-                        return this.Reload = false
+                            this.name = this.pokeInfo.Name[0].nom_pok
+                            this.activateFunctions = false
                     })
                     .catch((error) => console.log(error));
             },
             nextPokemon() {
                 this.id++;
                 this.getPokemonInformation();
-                return this.Reload = true;
+                return this.activateFunctions = true
             },
             previousPokemon() {
                 this.id--;
                 this.getPokemonInformation();
-                return this.Reload = true;
             },
             return_Image(image) {
                 return `/assets/${image}`
@@ -135,10 +96,6 @@
             return_type2_written(type2) {
                 return `/assets/types_ecriture/${type2}.png`
             },
-            pokeCries(id) {
-                var audio = new Audio(`/assets/pokemon-cries/cries/${id}.ogg`);
-                audio.play();
-            }
         },
     }
 </script>

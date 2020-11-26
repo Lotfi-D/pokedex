@@ -20,7 +20,7 @@
         </ul>
         <div class="tab-content mb-5" id="myTabContent">
             <div class="tab-pane fade show active text-center" id="description" role="tabpanel" aria-labelledby="home-tab">
-                <DescriptionPokemon :id="id" />
+                <DescriptionPokemon :id="id" :name="name" />
             </div>
             <div class="tab-pane fade text-center" id="stats" role="tabpanel" aria-labelledby="profile-tab">
                 <StatsPokemon :id="id" />
@@ -29,7 +29,7 @@
                 <WeaknessStrengh :id="id" />
             </div>
             <div class="tab-pane fade" id="evolution" role="tabpanel" aria-labelledby="contact-tab">
-                <EvolutionPokemon :id="id" :Reload="Reload" />{{Reload}}
+                <EvolutionPokemon :id="id" :name="name" />
             </div>
         </div>
     </div>
@@ -51,15 +51,13 @@
         },
         props:{
             id:Number,
-            Reload:Boolean//VARIABLE PR TEST
+            name:String,
         },
-        
         data() {
             return {
 
             }
         },
-
         methods: {
 
         },
