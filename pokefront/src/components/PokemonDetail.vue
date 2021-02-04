@@ -60,14 +60,14 @@
                     })
                     .catch((error) => console.log(error));
             },
-            nextPokemon() {
-                this.id++;
-                this.getPokemonInformation();
-            },
-            previousPokemon() {
-                this.id--;
-                this.getPokemonInformation();
-            },
+            // nextPokemon() {
+            //     this.id++;
+            //     this.getPokemonInformation();
+            // },
+            // previousPokemon() {
+            //     this.id--;
+            //     this.getPokemonInformation();
+            // },
             return_Image(image) {
                 return `/assets/${image}`
             },
