@@ -3,7 +3,7 @@
         <ul class="nav nav-tabs justify-content-center font-weight-bold" id="myTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#description" role="tab"
-                    aria-controls="home">About</a>
+                    aria-controls="home">About</a> {{activeF}}
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#stats" role="tab"

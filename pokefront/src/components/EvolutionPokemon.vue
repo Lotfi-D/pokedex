@@ -11,7 +11,8 @@
                 {{nomEvolution}}
             </div>
         </div>
-        <div v-else-if="idEvolution!=null && otherEvolution == true " class="mt-3 row justify-content-center text-center">
+        <div v-else-if="idEvolution!=null && otherEvolution == true "
+            class="mt-3 row justify-content-center text-center">
             <div v-for="evolution in evolutions" :key="evolution.id_pok_evol" class="row mt-3">
                 <div class="card border-0">
                     <img :src="return_ImagePokeBase(ImagePokemonBase)" alt="no pokemon's image"
@@ -43,7 +44,7 @@
         },
         props: {
             id: Number,
-            name: String
+            name: String,
         },
         data() {
             return {
@@ -59,10 +60,18 @@
             }
         },
         beforeMount() {
-            this.getPokemonIdEvolution()
+            this.getPokemonIdEvolution();
 
         },
+
+
         methods: {
+            Reload() {
+                if (this.activeF == true) {
+                    this.beforeMount()
+
+                }
+            },
             //Récupère le id de l'écolution du pokemon
             async getPokemonIdEvolution() {
                 var myHeaders = new Headers();
@@ -80,13 +89,11 @@
                         if (this.pokeInfo.Evolutions != "") {
                             this.evolutions = this.pokeInfo.Evolutions
                             this.idEvolution = this.pokeInfo.Evolutions[0].id_pok_evol
-                                if(this.pokeInfo.Evolutions.length >1)
-                                {
-                                    console.log("bjr")
-                                    this.otherEvolution = true
-                                }
-                        } 
-                        else {
+                            if (this.pokeInfo.Evolutions.length > 1) {
+                                console.log("bjr")
+                                this.otherEvolution = true
+                            }
+                        } else {
                             this.idEvolution = null
                         }
                     })
@@ -94,12 +101,21 @@
                     await axios.get("http://127.0.0.1:8000/api/v1/pokedex/" + this.idEvolution, requestOptions)
                         .then(response => {
                             this.infoEvolution = response.data.data,
-                            this.nomEvolution = this.infoEvolution.Name[0].nom_pok,
-                            this.ImageEvolution = this.infoEvolution.Images[0].Images
+                                this.nomEvolution = this.infoEvolution.Name[0].nom_pok,
+                                this.ImageEvolution = this.infoEvolution.Images[0].Images
                         })
                 }
 
             },
+
+
+
+
+
+
+
+
+
             return_ImagePokeBase(ImagePokemonBase) {
                 return `/assets/${ImagePokemonBase}`
             },

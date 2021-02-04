@@ -1,19 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 import Pokedex from '../views/Pokedex.vue'
 import PokedexId from '../views/PokedexId.vue'
+import Test from '../views/Test.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: '/test',
+    name: 'Test',
+    component: Test
   },
+ 
   {
-    path: '/pokedex',
+    path: '/',
     name: 'Pokedex',
     component: Pokedex
   },

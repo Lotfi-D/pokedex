@@ -1,15 +1,5 @@
 <template>
     <div class="container fontPokemon" style="max-width:60rem">
-        <router-link v-bind:to="'/pokedex/' + id">
-            <a v-on:click="nextPokemon()">
-                suivant
-            </a>
-        </router-link>
-        <router-link v-bind:to="'/pokedex/' + id">
-            <a v-on:click="previousPokemon()">
-                precedent {{activateFunctions}}
-            </a>
-        </router-link>
         <div class="d-flex justify-content-center ">
             <div class=" mb-5">
                 <div class="card-header mb-5">
@@ -44,7 +34,6 @@
                 type2: "",
                 image: "",
                 name: "",
-                activateFunctions: false
             }
         },
         beforeMount() {
@@ -68,14 +57,12 @@
                             this.type2 = this.pokeInfo.Types[0].type2,
                             this.image = this.pokeInfo.Images[0].Images,
                             this.name = this.pokeInfo.Name[0].nom_pok
-                            this.activateFunctions = false
                     })
                     .catch((error) => console.log(error));
             },
             nextPokemon() {
                 this.id++;
                 this.getPokemonInformation();
-                return this.activateFunctions = true
             },
             previousPokemon() {
                 this.id--;

@@ -63,7 +63,7 @@
         },
         props: {
             id: Number,
-            name:String
+            name:String,
         },
         data() {
             return {
@@ -78,6 +78,7 @@
         beforeMount() {
             this.getPokemonDescription()
         },
+
         methods: {
             async getPokemonDescription() {
                 var myHeaders = new Headers();

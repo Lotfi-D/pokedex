@@ -26,7 +26,8 @@
             <div class="col">
                 <div class="progress" style="max-width:20rem">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                        :aria-valuenow="attack" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ width: attack + '%' }"
+                        :aria-valuenow="attack" aria-valuemin="0" aria-valuemax="100"
+                        v-bind:style="{ width: attack + '%' }"
                         v-bind:class="{infmoyenne:attack<75 , supmoyenne:attack>75 }">
                     </div>
                 </div>
@@ -42,7 +43,8 @@
             <div class="col">
                 <div class="progress" style="max-width:20rem">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                        :aria-valuenow="defense" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ width: defense + '%' }"
+                        :aria-valuenow="defense" aria-valuemin="0" aria-valuemax="100"
+                        v-bind:style="{ width: defense + '%' }"
                         v-bind:class="{infmoyenne:defense<70, supmoyenne:defense>70}">
                     </div>
                 </div>
@@ -58,7 +60,8 @@
             <div class="col">
                 <div class="progress" style="max-width:20rem">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                        :aria-valuenow="sp_attack" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ width: sp_attack + '%' }"
+                        :aria-valuenow="sp_attack" aria-valuemin="0" aria-valuemax="100"
+                        v-bind:style="{ width: sp_attack + '%' }"
                         v-bind:class="{infmoyenne:sp_attack<69, supmoyenne:sp_attack>69}">
                     </div>
                 </div>
@@ -74,7 +77,8 @@
             <div class="col">
                 <div class="progress" style="max-width:20rem">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                        :aria-valuenow="sp_defense" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ width: sp_defense + '%' }"
+                        :aria-valuenow="sp_defense" aria-valuemin="0" aria-valuemax="100"
+                        v-bind:style="{ width: sp_defense + '%' }"
                         v-bind:class="{infmoyenne:sp_defense<69, supmoyenne:sp_defense>69}">
                     </div>
                 </div>
@@ -90,15 +94,14 @@
             <div class="col">
                 <div class="progress" style="max-width:20rem">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                        :aria-valuenow="speed" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ width: speed + '%' }"
-                        v-bind:class="{infmoyenne:speed<66, supmoyenne:speed>66}">
+                        :aria-valuenow="speed" aria-valuemin="0" aria-valuemax="100"
+                        v-bind:style="{ width: speed + '%' }" v-bind:class="{infmoyenne:speed<66, supmoyenne:speed>66}">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
-
 
 <script>
     import axios from "axios"
@@ -108,8 +111,8 @@
         components: {
 
         },
-        props:{
-            id:Number
+        props: {
+            id: Number,
         },
         data() {
             return {
@@ -123,9 +126,8 @@
             }
         },
         beforeMount() {
-            this.getPokemonStats()
+            this.getPokemonStats();
         },
-
         methods: {
             async getPokemonStats() {
                 var myHeaders = new Headers();
@@ -151,12 +153,12 @@
     }
 </script>
 <style scoped>
-.infmoyenne{
-background-color: red;
-}
+    .infmoyenne {
+        background-color: red;
+    }
 
-.supmoyenne{
-    background-color: green;
+    .supmoyenne {
+        background-color: green;
 
-}
+    }
 </style>
